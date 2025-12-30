@@ -1,0 +1,189 @@
+/* ========================================
+   お問い合わせフォーム確認画面 専用CSS
+   contact/confirm.blade.php 用スタイルシート
+   この画面専用のスタイルのみを記述
+   ======================================== */
+
+/* ========================================
+   確認コンテナ
+   ======================================== */
+
+/* 確認画面全体を中央配置、最大幅を設定して読みやすさを確保 */
+.confirm-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ========================================
+   確認項目の基本構造
+   ======================================== */
+
+/* 各確認項目のコンテナ：2カラムレイアウト（ラベル左、値右） */
+.confirm-group {
+    display: flex;
+    margin-bottom: 24px;
+    align-items: flex-start;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.confirm-group:last-of-type {
+    border-bottom: none;
+}
+
+/* ラベル部分：固定幅で統一感を保つ */
+.confirm-label {
+    width: 200px;
+    padding-top: 8px;
+    font-size: 14px;
+    color: #333;
+    flex-shrink: 0;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+/* 必須マーク：赤系の色で視認性を確保 */
+.confirm-label .required {
+    color: #dc3545;
+    margin-left: 2px;
+    font-weight: normal;
+}
+
+/* 値部分：残りの幅を全て使用 */
+.confirm-value {
+    flex: 1;
+    min-width: 0;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+    padding-top: 8px;
+}
+
+/* お問い合わせ内容の値：改行を保持 */
+.confirm-detail {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* ========================================
+   ボタン
+   ======================================== */
+
+/* ボタンコンテナ：中央揃え、適切な上余白 */
+.confirm-buttons {
+    text-align: center;
+    margin-top: 40px;
+    padding-bottom: 20px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* 戻るボタン：テキストリンク風のスタイル */
+.btn-back {
+    background-color: transparent;
+    color: #8b6f47;
+    border: 1px solid #8b6f47;
+    padding: 12px 40px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: inherit;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-back:hover {
+    background-color: #8b6f47;
+    color: #fff;
+}
+
+.btn-back:active {
+    background-color: #6b5435;
+    border-color: #6b5435;
+}
+
+/* 送信ボタン：ブラウン系の背景、白文字 */
+.btn-submit {
+    background-color: #8b6f47;
+    color: #fff;
+    border: none;
+    padding: 12px 60px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    font-family: inherit;
+    font-weight: 500;
+}
+
+.btn-submit:hover {
+    background-color: #6b5435;
+}
+
+.btn-submit:active {
+    background-color: #5a4630;
+    transform: translateY(1px);
+}
+
+/* ========================================
+   レスポンシブ対応（スマートフォン）
+   ======================================== */
+
+/* スマートフォン表示（768px以下）：1カラムレイアウトに変更 */
+@media (max-width: 768px) {
+    /* 確認コンテナのパディングを調整 */
+    .confirm-container {
+        padding: 15px;
+    }
+
+    /* 確認項目を1カラムに変更 */
+    .confirm-group {
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+    }
+
+    /* ラベルの幅を全幅に */
+    .confirm-label {
+        width: 100%;
+        padding-top: 0;
+        font-weight: 500;
+    }
+
+    /* 値のパディングを調整 */
+    .confirm-value {
+        padding-top: 0;
+    }
+
+    /* ボタンを縦並びに */
+    .confirm-buttons {
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 30px;
+    }
+
+    /* ボタンの幅を全幅に */
+    .btn-back,
+    .btn-submit {
+        width: 100%;
+        padding: 14px 20px;
+    }
+}
+
+/* ========================================
+   アクセシビリティ対応
+   ======================================== */
+
+/* フォーカス可能要素のフォーカス表示を改善（キーボード操作時） */
+.btn-back:focus-visible,
+.btn-submit:focus-visible {
+    outline: 2px solid #8b6f47;
+    outline-offset: 2px;
+}
+

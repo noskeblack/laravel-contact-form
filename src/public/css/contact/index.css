@@ -1,0 +1,310 @@
+/* ========================================
+   お問い合わせフォーム入力画面 専用CSS
+   contact/index.blade.php 用スタイルシート
+   この画面専用のスタイルのみを記述
+   ======================================== */
+
+/* ========================================
+   フォームコンテナ
+   ======================================== */
+
+/* フォーム全体を中央配置、最大幅を設定して読みやすさを確保 */
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ========================================
+   フォーム要素の基本構造
+   ======================================== */
+
+/* 各フォーム項目のコンテナ：2カラムレイアウト（ラベル左、入力右） */
+.form-group {
+    display: flex;
+    margin-bottom: 24px;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+/* ラベル部分：固定幅で統一感を保つ */
+.form-label {
+    width: 200px;
+    padding-top: 8px;
+    font-size: 14px;
+    color: #333;
+    flex-shrink: 0;
+    line-height: 1.5;
+}
+
+/* 必須マーク：赤系の色で視認性を確保 */
+.form-label .required {
+    color: #dc3545;
+    margin-left: 2px;
+    font-weight: normal;
+}
+
+/* 入力要素のコンテナ：残りの幅を全て使用 */
+.form-input-group {
+    flex: 1;
+    min-width: 0; /* flexboxでのテキストオーバーフロー対策 */
+}
+
+/* ========================================
+   名前入力（2つのフィールド）
+   ======================================== */
+
+/* 名前入力のコンテナ：2つのフィールドを横並び */
+.name-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+/* 各名前入力フィールド：均等に幅を分配 */
+.name-inputs input {
+    flex: 1;
+}
+
+/* ========================================
+   電話番号入力（3つのフィールド）
+   ======================================== */
+
+/* 電話番号入力のコンテナ：3つのフィールドと区切り文字を横並び */
+.tel-inputs {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* 各電話番号入力フィールド：均等に幅を分配 */
+.tel-inputs input {
+    flex: 1;
+}
+
+/* 電話番号の区切り文字（ハイフン）：視認性を確保 */
+.tel-separator {
+    color: #666;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+/* ========================================
+   入力フィールド共通スタイル
+   ======================================== */
+
+/* テキスト入力、メール入力、電話入力、セレクト、テキストエリアの共通スタイル */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    font-size: 14px;
+    color: #333;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    font-family: inherit;
+}
+
+/* フォーカス時のスタイル：ブラウン系のボーダー、白背景で視認性向上 */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #8b6f47;
+    background-color: #fff;
+    box-shadow: 0 0 0 2px rgba(139, 111, 71, 0.1);
+}
+
+/* プレースホルダーのスタイル：控えめなグレーで入力ガイド */
+input::placeholder,
+textarea::placeholder {
+    color: #999;
+    opacity: 1; /* Firefox用 */
+}
+
+/* ========================================
+   ラジオボタン
+   ======================================== */
+
+/* ラジオボタングループ：横並び配置、適切な間隔 */
+.radio-group {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* 各ラジオボタン項目：ラベルとボタンを横並び */
+.radio-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ラジオボタン本体：適切なサイズ、カーソルをポインターに */
+.radio-item input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* ラジオボタンのラベル：クリック可能、適切なサイズ */
+.radio-item label {
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* ========================================
+   セレクトボックス
+   ======================================== */
+
+/* セレクトボックスのカスタマイズ：デフォルトの矢印を非表示にし、カスタム矢印を追加 */
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 35px;
+    cursor: pointer;
+}
+
+/* ========================================
+   テキストエリア
+   ======================================== */
+
+/* テキストエリア：最小の高さを確保、縦方向のみリサイズ可能 */
+textarea {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+/* ========================================
+   エラーメッセージ
+   ======================================== */
+
+/* エラーメッセージ：赤系の色で視認性を確保、適切な余白 */
+.error-message {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 4px;
+    line-height: 1.4;
+}
+
+/* エラーがある入力フィールドのスタイル：ボーダーを赤に */
+.form-input-group:has(.error-message) input,
+.form-input-group:has(.error-message) select,
+.form-input-group:has(.error-message) textarea {
+    border-color: #dc3545;
+}
+
+/* ========================================
+   送信ボタン
+   ======================================== */
+
+/* 送信ボタンコンテナ：中央揃え、適切な上余白 */
+.submit-button {
+    text-align: center;
+    margin-top: 40px;
+    padding-bottom: 20px;
+}
+
+/* 送信ボタン本体：ブラウン系の背景、白文字、適切なサイズとパディング */
+.submit-button button {
+    background-color: #8b6f47;
+    color: #fff;
+    border: none;
+    padding: 12px 60px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    font-family: inherit;
+    font-weight: 500;
+}
+
+/* ホバー時：少し濃いブラウンに変化 */
+.submit-button button:hover {
+    background-color: #6b5435;
+}
+
+/* アクティブ時（クリック中）：さらに濃いブラウンに変化 */
+.submit-button button:active {
+    background-color: #5a4630;
+    transform: translateY(1px);
+}
+
+/* ========================================
+   レスポンシブ対応（スマートフォン）
+   ======================================== */
+
+/* スマートフォン表示（768px以下）：1カラムレイアウトに変更 */
+@media (max-width: 768px) {
+    /* フォームコンテナのパディングを調整 */
+    .form-container {
+        padding: 15px;
+    }
+
+    /* フォーム項目を1カラムに変更 */
+    .form-group {
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    /* ラベルの幅を全幅に */
+    .form-label {
+        width: 100%;
+        padding-top: 0;
+        font-weight: 500;
+    }
+
+    /* 名前入力と電話番号入力も1カラムに */
+    .name-inputs,
+    .tel-inputs {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    /* 電話番号の区切り文字を非表示 */
+    .tel-separator {
+        display: none;
+    }
+
+    /* ラジオボタングループの間隔を調整 */
+    .radio-group {
+        gap: 15px;
+    }
+
+    /* 送信ボタンの幅を全幅に、パディングを調整 */
+    .submit-button {
+        margin-top: 30px;
+    }
+
+    .submit-button button {
+        width: 100%;
+        padding: 14px 20px;
+    }
+}
+
+/* ========================================
+   アクセシビリティ対応
+   ======================================== */
+
+/* フォーカス可能要素のフォーカス表示を改善（キーボード操作時） */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+button:focus-visible {
+    outline: 2px solid #8b6f47;
+    outline-offset: 2px;
+}

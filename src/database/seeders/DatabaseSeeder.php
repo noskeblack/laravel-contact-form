@@ -4,6 +4,11 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
+/**
+ * データベースシーダー
+ * 
+ * 全シーダーを実行するメインシーダー
+ */
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -13,6 +18,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        // カテゴリを先に作成（contacts テーブルの外部キー制約のため）
+        $this->call([
+            CategoriesTableSeeder::class,
+            ContactsTableSeeder::class,
+        ]);
     }
 }

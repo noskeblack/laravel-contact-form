@@ -1,0 +1,477 @@
+/* ========================================
+   管理画面一覧 専用CSS
+   admin/index.blade.php 用スタイルシート
+   この画面専用のスタイルのみを記述
+   ======================================== */
+
+/* ========================================
+   管理画面コンテナ
+   ======================================== */
+
+/* 管理画面全体を中央配置、最大幅を設定 */
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* ========================================
+   ヘッダー部分
+   ======================================== */
+
+/* 管理画面ヘッダー：タイトルとログアウトボタンを横並び */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e5e5e5;
+}
+
+/* 管理画面タイトル */
+.admin-title {
+    font-size: 28px;
+    color: #8b6f47;
+    font-weight: normal;
+    margin: 0;
+}
+
+/* ログアウトフォーム */
+.admin-logout-form {
+    margin: 0;
+}
+
+/* ログアウトボタン */
+.admin-logout-button {
+    background-color: #f5f5f5;
+    color: #8b6f47;
+    border: 1px solid #ddd;
+    padding: 8px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: inherit;
+}
+
+.admin-logout-button:hover {
+    background-color: #e5e5e5;
+}
+
+/* ========================================
+   検索セクション
+   ======================================== */
+
+/* 検索セクション：背景色で視覚的に分離 */
+.admin-search-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* 検索フォーム */
+.admin-search-form {
+    margin: 0;
+}
+
+/* 検索行：検索項目を横並び */
+.admin-search-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* 検索入力フィールド：contact画面と統一したスタイル */
+.admin-search-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+    background-color: #f5f5f5;
+    color: #333;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.admin-search-input:focus {
+    outline: none;
+    border-color: #8b6f47;
+    background-color: #fff;
+    box-shadow: 0 0 0 2px rgba(139, 111, 71, 0.1);
+}
+
+.admin-search-input::placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+/* 検索セレクトボックス：contact画面と統一したスタイル */
+.admin-search-select {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+    background-color: #f5f5f5;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 35px;
+}
+
+.admin-search-select:focus {
+    outline: none;
+    border-color: #8b6f47;
+    background-color: #fff;
+    box-shadow: 0 0 0 2px rgba(139, 111, 71, 0.1);
+}
+
+/* 検索日付入力：contact画面と統一したスタイル */
+.admin-search-date {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+    background-color: #f5f5f5;
+    color: #333;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.admin-search-date:focus {
+    outline: none;
+    border-color: #8b6f47;
+    background-color: #fff;
+    box-shadow: 0 0 0 2px rgba(139, 111, 71, 0.1);
+}
+
+/* 検索ボタン：contact画面と統一したスタイル */
+.admin-search-button {
+    background-color: #8b6f47;
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    font-family: inherit;
+    font-weight: 500;
+}
+
+.admin-search-button:hover {
+    background-color: #6b5435;
+}
+
+.admin-search-button:active {
+    background-color: #5a4630;
+    transform: translateY(1px);
+}
+
+/* リセットボタン：目立つが控えめな色 */
+.admin-reset-button {
+    background-color: #fff;
+    color: #8b6f47;
+    border: 2px solid #8b6f47;
+    padding: 10px 30px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: inherit;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    font-weight: 500;
+}
+
+.admin-reset-button:hover {
+    background-color: #8b6f47;
+    color: #fff;
+}
+
+.admin-reset-button:active {
+    background-color: #6b5435;
+    border-color: #6b5435;
+}
+
+
+/* ========================================
+   テーブルセクション
+   ======================================== */
+
+/* テーブルセクション：背景色で視覚的に分離 */
+.admin-table-section {
+    background-color: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* 管理画面テーブル */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* テーブルヘッダー */
+.admin-table-head {
+    background-color: #8b6f47;
+    color: #fff;
+}
+
+.admin-table-header {
+    padding: 14px 15px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+/* テーブル行：hover演出で視認性向上 */
+.admin-table-row {
+    border-bottom: 1px solid #e5e5e5;
+    transition: background-color 0.2s ease;
+}
+
+.admin-table-row:hover {
+    background-color: #f9f9f9;
+}
+
+.admin-table-row:last-child {
+    border-bottom: none;
+}
+
+/* テーブルセル：適切な行間・余白を確保 */
+.admin-table-cell {
+    padding: 14px 15px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* データなしメッセージ */
+.admin-table-no-data {
+    text-align: center;
+    color: #999;
+    padding: 60px 20px;
+    font-size: 14px;
+}
+
+/* ========================================
+   詳細ボタン
+   ======================================== */
+
+/* 詳細ボタン */
+.admin-detail-button {
+    background-color: #f5f5f5;
+    color: #8b6f47;
+    border: 1px solid #ddd;
+    padding: 6px 20px;
+    font-size: 13px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: inherit;
+}
+
+.admin-detail-button:hover {
+    background-color: #e5e5e5;
+}
+
+/* ========================================
+   ページネーション
+   ======================================== */
+
+/* ページネーションセクション */
+.admin-pagination-section {
+    margin-top: 30px;
+    text-align: center;
+}
+
+/* ページネーションラッパー（admin-pagination） */
+.admin-pagination {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* Laravel標準のページネーションスタイル */
+.admin-pagination .pagination {
+    display: inline-flex;
+    gap: 5px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-pagination .pagination li {
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+/* ページネーションの基本スタイル（数値ページ番号用） */
+.admin-pagination .pagination li:not(:first-child):not(:last-child) a,
+.admin-pagination .pagination li:not(:first-child):not(:last-child) span {
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #8b6f47;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+    line-height: 1.4;
+    min-width: 40px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.admin-pagination .pagination li:not(:first-child):not(:last-child) a:hover {
+    background-color: #f5f5f5;
+}
+
+.admin-pagination .pagination li:not(:first-child):not(:last-child) .active span {
+    background-color: #8b6f47;
+    color: #fff;
+    border-color: #8b6f47;
+}
+
+/* ページネーション矢印（前ページ・次ページ）のサイズ調整 */
+/* 最初と最後のli要素内のリンク/スパンを対象（矢印ボタン） */
+.admin-pagination .pagination li:first-child > a,
+.admin-pagination .pagination li:first-child > span,
+.admin-pagination .pagination li:last-child > a,
+.admin-pagination .pagination li:last-child > span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 10px !important;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #8b6f47;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+    width: auto !important;
+    max-width: 100px !important;
+    min-width: 60px !important;
+    height: auto !important;
+    max-height: 38px !important;
+    text-align: center;
+    white-space: nowrap;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.admin-pagination .pagination li:first-child > a:hover,
+.admin-pagination .pagination li:last-child > a:hover {
+    background-color: #f5f5f5;
+}
+
+/* 無効化された矢印（disabled状態）のスタイル */
+.admin-pagination .pagination li:first-child.disabled > span,
+.admin-pagination .pagination li:last-child.disabled > span,
+.admin-pagination .pagination .disabled span {
+    color: #ccc;
+    border-color: #e5e5e5;
+    cursor: not-allowed;
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+    padding: 8px 10px !important;
+    width: auto !important;
+    max-width: 100px !important;
+    min-width: 60px !important;
+    height: auto !important;
+    max-height: 38px !important;
+    text-align: center;
+    white-space: nowrap;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* ========================================
+   レスポンシブ対応（スマートフォン）
+   ======================================== */
+
+/* スマートフォン表示（768px以下） */
+@media (max-width: 768px) {
+    /* コンテナのパディングを調整 */
+    .admin-container {
+        padding: 20px 15px;
+    }
+
+    /* ヘッダーを縦並びに */
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    /* タイトルのサイズを調整 */
+    .admin-title {
+        font-size: 24px;
+    }
+
+    /* 検索行を縦並びに */
+    .admin-search-row {
+        flex-direction: column;
+    }
+
+    /* 検索入力フィールドを全幅に */
+    .admin-search-input,
+    .admin-search-select,
+    .admin-search-date {
+        width: 100%;
+    }
+
+    /* ボタンを全幅に */
+    .admin-search-button,
+    .admin-reset-button {
+        width: 100%;
+    }
+
+    /* テーブルを横スクロール可能に */
+    .admin-table-section {
+        overflow-x: auto;
+    }
+
+    .admin-table {
+        min-width: 600px;
+    }
+
+}
+
+/* ========================================
+   アクセシビリティ対応
+   ======================================== */
+
+/* フォーカス可能要素のフォーカス表示を改善（キーボード操作時） */
+.admin-logout-button:focus-visible,
+.admin-search-button:focus-visible,
+.admin-reset-button:focus-visible,
+.admin-detail-button:focus-visible,
+.admin-search-input:focus-visible,
+.admin-search-select:focus-visible,
+.admin-search-date:focus-visible {
+    outline: 2px solid #8b6f47;
+    outline-offset: 2px;
+}

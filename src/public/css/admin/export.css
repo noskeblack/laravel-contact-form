@@ -1,0 +1,69 @@
+/* ========================================
+   CSVエクスポートボタン 専用CSS
+   admin/index.blade.php 用スタイルシート
+   この画面専用のスタイルのみを記述
+   ======================================== */
+
+/* ========================================
+   エクスポートセクション
+   ======================================== */
+
+/* エクスポートセクション */
+.admin-export-section {
+    margin-bottom: 20px;
+}
+
+/* エクスポートフォーム */
+.admin-export-form {
+    margin: 0;
+}
+
+/* ========================================
+   エクスポートボタン
+   ======================================== */
+
+/* エクスポートボタン：青系の目立つ色で配置 */
+.admin-export-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    font-family: inherit;
+    font-weight: 500;
+}
+
+.admin-export-button:hover {
+    background-color: #0056b3;
+}
+
+.admin-export-button:active {
+    background-color: #004085;
+    transform: translateY(1px);
+}
+
+/* ========================================
+   レスポンシブ対応（スマートフォン）
+   ======================================== */
+
+/* スマートフォン表示（768px以下） */
+@media (max-width: 768px) {
+    /* エクスポートボタンを全幅に */
+    .admin-export-button {
+        width: 100%;
+    }
+}
+
+/* ========================================
+   アクセシビリティ対応
+   ======================================== */
+
+/* フォーカス可能要素のフォーカス表示を改善（キーボード操作時） */
+.admin-export-button:focus-visible {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
