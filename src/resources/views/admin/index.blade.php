@@ -130,7 +130,7 @@
         @if(isset($contacts) && $contacts->hasPages())
             <div class="admin-pagination-section">
                 <div class="admin-pagination">
-                    {{ $contacts->links() }}
+                    {{ $contacts->links('pagination::admin') }}
                 </div>
             </div>
         @endif

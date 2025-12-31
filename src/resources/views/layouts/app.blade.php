@@ -11,7 +11,7 @@
 <body>
     <header class="header">
         <div class="brand-name">FashionablyLate</div>
-        <a class="contact-link" href="/contact">お問い合わせ</a>
+        <a class="contact-link" href="/">お問い合わせ</a>
     </header>
     <main class="main-content">
         @yield('content')
