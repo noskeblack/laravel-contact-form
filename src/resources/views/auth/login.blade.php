@@ -8,7 +8,7 @@
         <div class="login-card">
             <h1 class="login-title">Login</h1>
             
-            <form action="{{ route('auth.login') }}" method="POST" class="login-form">
+            <form action="/login" method="POST" class="login-form">
                 @csrf
 
                 <!-- メールアドレス -->
@@ -79,11 +79,9 @@
             </form>
 
             <!-- 登録リンク -->
-            @if(Route::has('auth.register'))
                 <div class="login-register-link">
-                    <a href="{{ route('auth.register') }}" class="login-register-text">register</a>
-                </div>
-            @endif
+                    <a href="/register" class="login-register-text">register</a>
+                </div>            
         </div>
     </div>
 @endsection

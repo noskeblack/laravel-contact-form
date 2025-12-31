@@ -3,13 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Validator;
 
 /**
  * お問い合わせフォーム用バリデーションリクエスト
- * 
- * 適用先: お問い合わせフォーム入力ページ (/)
- * Controller: ContactController@confirm
  */
 class ContactFormRequest extends FormRequest
 {
@@ -20,7 +16,6 @@ class ContactFormRequest extends FormRequest
      */
     public function authorize()
     {
-        // お問い合わせフォームは認証不要
         return true;
     }
 
@@ -32,47 +27,17 @@ class ContactFormRequest extends FormRequest
     public function rules()
     {
         return [
-            // お名前（姓）: 必須、文字列、最大8文字
             'last_name' => ['required', 'string', 'max:8'],
-            
-            // お名前（名）: 必須、文字列、最大8文字
             'first_name' => ['required', 'string', 'max:8'],
-            
-            // 性別: 必須
             'gender' => ['required'],
-            
-            // メールアドレス: 必須、メール形式
             'email' => ['required', 'email'],
-            
-            // 電話番号（3分割入力）: 必須、半角英数字、各項目最大5桁
             'tel_part1' => ['required', 'regex:/^[0-9a-zA-Z]+$/', 'max:5'],
             'tel_part2' => ['required', 'regex:/^[0-9a-zA-Z]+$/', 'max:5'],
             'tel_part3' => ['required', 'regex:/^[0-9a-zA-Z]+$/', 'max:5'],
-            
-            // 住所: 必須
             'address' => ['required'],
-            
-            // お問い合わせの種類: 必須、categoriesテーブルに存在するIDであること
             'category_id' => ['required', 'exists:categories,id'],
-            
-            // お問い合わせ内容: 必須、最大120文字
             'detail' => ['required', 'max:120'],
         ];
-    }
-
-    /**
-     * カスタムバリデーション
-     * 
-     * 電話番号の各項目が最大5桁であることをチェック
-     * （各項目の桁数チェックは rules() の max:5 で実装）
-     * 
-     * @param Validator $validator
-     * @return void
-     */
-    public function withValidator(Validator $validator)
-    {
-        // 各項目が5桁までなので、合計チェックは不要
-        // 各項目の桁数チェックは rules() の max:5 で実装済み
     }
 
     /**

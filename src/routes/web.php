@@ -41,23 +41,24 @@ Route::get('/thanks', [ContactController::class, 'thanks'])->name('contact.thank
 /* ========================================
    認証関連ルート
    ======================================== */
+// Fortifyが自動的にルートを登録するため、以下のルートはコメントアウト
 
-// ユーザー登録画面（GET）
-Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('auth.register');
+// // ユーザー登録画面（GET）
+// Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('auth.register');
 
-// ユーザー登録処理（POST: 登録フォームからの送信）
-// FormRequest: UserRegisterRequest 適用（コントローラ側で処理）
-Route::post('/register', [AuthController::class, 'register'])->name('auth.register.post');
+// // ユーザー登録処理（POST: 登録フォームからの送信）
+// // FormRequest: UserRegisterRequest 適用（コントローラ側で処理）
+// Route::post('/register', [AuthController::class, 'register'])->name('auth.register.post');
 
-// ログイン画面（GET）
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.login');
+// // ログイン画面（GET）
+// Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.login');
 
-// ログイン処理（POST: ログインフォームからの送信）
-// FormRequest: UserLoginRequest 適用（コントローラ側で処理）
-Route::post('/login', [AuthController::class, 'login'])->name('auth.login.post');
+// // ログイン処理（POST: ログインフォームからの送信）
+// // FormRequest: UserLoginRequest 適用（コントローラ側で処理）
+// Route::post('/login', [AuthController::class, 'login'])->name('auth.login.post');
 
-// ログアウト処理
-Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+// // ログアウト処理
+// Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 /* ========================================
    管理画面関連ルート

@@ -10,7 +10,7 @@
         <!-- ヘッダー -->
         <div class="admin-header">
             <h1 class="admin-title">Admin</h1>
-            <form action="{{ route('auth.logout') }}" method="POST" class="admin-logout-form">
+            <form action="/logout" method="POST" class="admin-logout-form">
                 @csrf
                 <button type="submit" class="admin-logout-button">logout</button>
             </form>
