@@ -1,0 +1,102 @@
+/* ========================================
+   お問い合わせ完了画面 専用CSS
+   contact/thanks.blade.php 用スタイルシート
+   この画面専用のスタイルのみを記述
+   ======================================== */
+
+/* ========================================
+   サンクスコンテナ
+   ======================================== */
+
+/* サンクス画面全体を中央配置、最大幅を設定 */
+.thanks-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+/* ========================================
+   メッセージ部分
+   ======================================== */
+
+/* メッセージコンテナ */
+.thanks-message {
+    margin-bottom: 50px;
+}
+
+/* メッセージテキスト：大きく、落ち着いたブラウン系の色 */
+.thanks-text {
+    font-size: 24px;
+    color: #8b6f47;
+    line-height: 1.8;
+    font-weight: normal;
+    margin: 0;
+}
+
+/* ========================================
+   ボタン部分
+   ======================================== */
+
+/* ボタンコンテナ */
+.thanks-button {
+    margin-top: 40px;
+}
+
+/* HOMEボタン：ブラウン系の背景、白文字 */
+.btn-home {
+    display: inline-block;
+    background-color: #8b6f47;
+    color: #fff;
+    padding: 14px 50px;
+    font-size: 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    font-family: inherit;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.btn-home:hover {
+    background-color: #6b5435;
+}
+
+.btn-home:active {
+    background-color: #5a4630;
+    transform: translateY(1px);
+}
+
+/* ========================================
+   レスポンシブ対応（スマートフォン）
+   ======================================== */
+
+/* スマートフォン表示（768px以下） */
+@media (max-width: 768px) {
+    /* コンテナのパディングを調整 */
+    .thanks-container {
+        padding: 40px 15px;
+    }
+
+    /* メッセージテキストのサイズを調整 */
+    .thanks-text {
+        font-size: 20px;
+    }
+
+    /* ボタンの幅を全幅に */
+    .btn-home {
+        width: 100%;
+        padding: 14px 20px;
+    }
+}
+
+/* ========================================
+   アクセシビリティ対応
+   ======================================== */
+
+/* フォーカス可能要素のフォーカス表示を改善（キーボード操作時） */
+.btn-home:focus-visible {
+    outline: 2px solid #8b6f47;
+    outline-offset: 2px;
+}
+

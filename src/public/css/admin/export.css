@@ -1,0 +1,75 @@
+/* ========================================
+   CSVエクスポートボタン 専用CSS
+   admin/index.blade.php 用スタイルシート
+   この画面専用のスタイルのみを記述
+   ======================================== */
+
+/* ========================================
+   エクスポートセクション
+   ======================================== */
+
+/* エクスポートセクション */
+.admin-export-section {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+/* エクスポートフォーム */
+.admin-export-form {
+    margin: 0;
+    display: inline-block;
+}
+
+/* ========================================
+   エクスポートボタン
+   ======================================== */
+
+/* エクスポートボタン：リセットボタンと同じスタイル */
+.admin-export-button {
+    background-color: #fff !important;
+    color: #8b6f47 !important;
+    border: 2px solid #8b6f47 !important;
+    padding: 10px 30px !important;
+    font-size: 14px !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease, color 0.3s ease !important;
+    font-family: inherit !important;
+    font-weight: 500 !important;
+    display: inline-block !important;
+    text-align: center !important;
+}
+
+.admin-export-button:hover {
+    background-color: #8b6f47 !important;
+    color: #fff !important;
+}
+
+.admin-export-button:active {
+    background-color: #6b5435 !important;
+    border-color: #6b5435 !important;
+}
+
+/* ========================================
+   レスポンシブ対応（スマートフォン）
+   ======================================== */
+
+/* スマートフォン表示（768px以下） */
+@media (max-width: 768px) {
+    /* エクスポートボタンを全幅に */
+    .admin-export-button {
+        width: 100%;
+    }
+}
+
+/* ========================================
+   アクセシビリティ対応
+   ======================================== */
+
+/* フォーカス可能要素のフォーカス表示を改善（キーボード操作時） */
+.admin-export-button:focus-visible {
+    outline: 2px solid #8b6f47 !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 2px rgba(139, 111, 71, 0.2) !important;
+}
+

@@ -1,0 +1,233 @@
+/* ========================================
+   管理画面モーダル 専用CSS
+   admin/index.blade.php 用スタイルシート
+   この画面専用のスタイルのみを記述
+   ======================================== */
+
+/* ========================================
+   モーダルコンテナ
+   ======================================== */
+
+/* モーダルコンテナ：初期状態は非表示 */
+.admin-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: none;
+}
+
+/* モーダル表示時：.is-active クラスで表示 */
+.admin-modal.is-active {
+    display: block;
+}
+
+/* ========================================
+   モーダルオーバーレイ
+   ======================================== */
+
+/* モーダルオーバーレイ：背景を半透明で暗くする */
+.admin-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+/* ========================================
+   モーダルコンテンツ
+   ======================================== */
+
+/* モーダルコンテンツ：中央配置、白背景 */
+.admin-modal-content {
+    position: relative;
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    z-index: 1001;
+}
+
+/* ========================================
+   モーダルヘッダー
+   ======================================== */
+
+/* モーダルヘッダー：タイトルと閉じるボタンを横並び */
+.admin-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* モーダルタイトル */
+.admin-modal-title {
+    font-size: 20px;
+    color: #8b6f47;
+    font-weight: normal;
+    margin: 0;
+}
+
+/* モーダル閉じるボタン */
+.admin-modal-close {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease, transform 0.1s ease;
+    font-family: inherit;
+    line-height: 1;
+}
+
+.admin-modal-close:hover {
+    color: #333;
+}
+
+.admin-modal-close:active {
+    transform: scale(0.9);
+}
+
+/* ========================================
+   モーダルボディ
+   ======================================== */
+
+/* モーダルボディ */
+.admin-modal-body {
+    padding: 25px;
+}
+
+/* モーダルリスト：定義リスト形式で見やすく表示 */
+.admin-modal-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* モーダル項目：各項目を縦並びで表示 */
+.admin-modal-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.admin-modal-item:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* モーダルラベル（dt）：項目名 */
+.admin-modal-label {
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+/* モーダル値（dd）：項目の値 */
+.admin-modal-value {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* モーダル詳細（お問い合わせ内容）：改行を保持 */
+.admin-modal-detail {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* ========================================
+   モーダルフッター
+   ======================================== */
+
+/* モーダルフッター */
+.admin-modal-footer {
+    padding: 20px 25px;
+    border-top: 1px solid #e5e5e5;
+    text-align: right;
+}
+
+/* 削除フォーム */
+.admin-delete-form {
+    margin: 0;
+}
+
+/* 削除ボタン：赤色で目立たせ、誤操作を防ぐ */
+.admin-delete-button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    font-family: inherit;
+    font-weight: 500;
+}
+
+.admin-delete-button:hover {
+    background-color: #c82333;
+}
+
+.admin-delete-button:active {
+    background-color: #bd2130;
+    transform: translateY(1px);
+}
+
+/* ========================================
+   レスポンシブ対応（スマートフォン）
+   ======================================== */
+
+/* スマートフォン表示（768px以下） */
+@media (max-width: 768px) {
+    /* モーダルコンテンツの幅を調整 */
+    .admin-modal-content {
+        margin: 20px;
+        max-width: calc(100% - 40px);
+    }
+
+    /* モーダルヘッダー・ボディ・フッターのパディングを調整 */
+    .admin-modal-header,
+    .admin-modal-body,
+    .admin-modal-footer {
+        padding: 15px 20px;
+    }
+
+    /* モーダルタイトルのサイズを調整 */
+    .admin-modal-title {
+        font-size: 18px;
+    }
+}
+
+/* ========================================
+   アクセシビリティ対応
+   ======================================== */
+
+/* フォーカス可能要素のフォーカス表示を改善（キーボード操作時） */
+.admin-modal-close:focus-visible,
+.admin-delete-button:focus-visible {
+    outline: 2px solid #8b6f47;
+    outline-offset: 2px;
+}
+

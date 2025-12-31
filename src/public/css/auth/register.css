@@ -1,0 +1,215 @@
+/* ========================================
+   ユーザー登録画面 専用CSS
+   auth/register.blade.php 用スタイルシート
+   この画面専用のスタイルのみを記述
+   ======================================== */
+
+/* ========================================
+   登録コンテナ
+   ======================================== */
+
+/* 登録画面全体を中央配置 */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 200px);
+    padding: 40px 20px;
+}
+
+/* ========================================
+   登録カード
+   ======================================== */
+
+/* 登録カード：白背景、角丸、影付き */
+.register-card {
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   登録タイトル
+   ======================================== */
+
+/* 登録タイトル */
+.register-title {
+    font-size: 24px;
+    color: #8b6f47;
+    font-weight: normal;
+    margin: 0 0 30px 0;
+    text-align: center;
+}
+
+/* ========================================
+   登録フォーム
+   ======================================== */
+
+/* 登録フォーム */
+.register-form {
+    margin: 0;
+}
+
+/* フォームグループ：各入力項目のコンテナ */
+.register-form-group {
+    margin-bottom: 20px;
+}
+
+.register-form-group:last-of-type {
+    margin-bottom: 0;
+}
+
+/* ラベル */
+.register-label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+/* 入力フィールド */
+.register-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+    background-color: #f5f5f5;
+    color: #333;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.register-input:focus {
+    outline: none;
+    border-color: #8b6f47;
+    background-color: #fff;
+    box-shadow: 0 0 0 2px rgba(139, 111, 71, 0.1);
+}
+
+.register-input::placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+/* ========================================
+   エラーメッセージ
+   ======================================== */
+
+/* エラーメッセージ（個別） */
+.register-error-message {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 6px;
+    line-height: 1.4;
+}
+
+/* エラーメッセージ（全般） */
+.register-error-general {
+    margin-bottom: 20px;
+    padding: 12px;
+    background-color: #fff5f5;
+    border: 1px solid #fecaca;
+    border-radius: 4px;
+}
+
+/* ========================================
+   登録ボタン
+   ======================================== */
+
+/* ボタングループ */
+.register-button-group {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+/* 登録ボタン */
+.register-button {
+    width: 100%;
+    background-color: #8b6f47;
+    color: #fff;
+    border: none;
+    padding: 14px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    font-family: inherit;
+    font-weight: 500;
+}
+
+.register-button:hover {
+    background-color: #6b5435;
+}
+
+.register-button:active {
+    background-color: #5a4630;
+    transform: translateY(1px);
+}
+
+/* ========================================
+   ログインリンク
+   ======================================== */
+
+/* ログインリンクセクション */
+.register-login-link {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e5e5;
+}
+
+/* ログインリンクテキスト */
+.register-login-text {
+    color: #8b6f47;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.register-login-text:hover {
+    color: #6b5435;
+    text-decoration: underline;
+}
+
+/* ========================================
+   レスポンシブ対応（スマートフォン）
+   ======================================== */
+
+/* スマートフォン表示（768px以下） */
+@media (max-width: 768px) {
+    /* コンテナのパディングを調整 */
+    .register-container {
+        padding: 20px 15px;
+        min-height: calc(100vh - 150px);
+    }
+
+    /* カードのパディングを調整 */
+    .register-card {
+        padding: 30px 20px;
+    }
+
+    /* タイトルのサイズを調整 */
+    .register-title {
+        font-size: 20px;
+        margin-bottom: 25px;
+    }
+}
+
+/* ========================================
+   アクセシビリティ対応
+   ======================================== */
+
+/* フォーカス可能要素のフォーカス表示を改善（キーボード操作時） */
+.register-input:focus-visible,
+.register-button:focus-visible,
+.register-login-text:focus-visible {
+    outline: 2px solid #8b6f47;
+    outline-offset: 2px;
+}
+

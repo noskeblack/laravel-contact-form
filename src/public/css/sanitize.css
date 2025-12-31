@@ -1,0 +1,97 @@
+/* ========================================
+   sanitize.css - リセット・正規化専用
+   デザイン要素は含めない
+   ======================================== */
+
+/* 全要素のマージン・パディングをリセットし、box-sizingを統一 */
+*,
+::before,
+::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* HTML要素の基本設定 */
+html {
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    word-break: break-word;
+}
+
+/* body要素のリセット */
+body {
+    margin: 0;
+}
+
+/* 見出し要素のリセット */
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+/* リスト要素のリセット */
+ul, ol {
+    list-style: none;
+    padding: 0;
+}
+
+/* リンク要素のリセット */
+a {
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 画像要素のリセット */
+img {
+    border-style: none;
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+/* フォーム要素のリセット */
+button,
+input,
+select,
+textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+button {
+    overflow: visible;
+    text-transform: none;
+    -webkit-appearance: button;
+    appearance: button;
+    cursor: pointer;
+}
+
+input {
+    overflow: visible;
+}
+
+textarea {
+    overflow: auto;
+    resize: vertical;
+}
+
+/* テーブル要素のリセット */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* その他の要素のリセット */
+p {
+    margin: 0;
+}
+
+blockquote {
+    margin: 0;
+}
