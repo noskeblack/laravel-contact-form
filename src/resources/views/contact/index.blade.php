@@ -116,7 +116,7 @@
                             id="tel_part1"
                             value="{{ old('tel_part1') }}"
                             placeholder="例:080"
-                            maxlength="4"
+                            maxlength="5"
                         >
                         <span class="tel-separator">-</span>
                         <input 
@@ -125,7 +125,7 @@
                             id="tel_part2"
                             value="{{ old('tel_part2') }}"
                             placeholder="例:1234"
-                            maxlength="4"
+                            maxlength="5"
                         >
                         <span class="tel-separator">-</span>
                         <input 
@@ -134,7 +134,7 @@
                             id="tel_part3"
                             value="{{ old('tel_part3') }}"
                             placeholder="例:5678"
-                            maxlength="4"
+                            maxlength="5"
                         >
                     </div>
                     @error('tel')
