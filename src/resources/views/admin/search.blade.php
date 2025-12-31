@@ -61,10 +61,26 @@
                         </span>
                     </div>
                 @endif
-                @if(request('date'))
+                @if(request('created_from') || request('created_to'))
                     <div class="admin-search-condition-item">
                         <span class="admin-search-condition-label">日付：</span>
-                        <span class="admin-search-condition-value">{{ request('date') }}</span>
+                        <span class="admin-search-condition-value">
+                            @if(request('created_from') && request('created_to'))
+                                {{ request('created_from') }} ～ {{ request('created_to') }}
+                            @elseif(request('created_from'))
+                                {{ request('created_from') }} 以降
+                            @elseif(request('created_to'))
+                                {{ request('created_to') }} 以前
+                            @endif
+                        </span>
+                    </div>
+                @endif
+                @if(request('search_type'))
+                    <div class="admin-search-condition-item">
+                        <span class="admin-search-condition-label">検索タイプ：</span>
+                        <span class="admin-search-condition-value">
+                            {{ request('search_type') == 'exact' ? '完全一致' : '部分一致' }}
+                        </span>
                     </div>
                 @endif
             </div>
@@ -81,6 +97,10 @@
                         value="{{ request('keyword') }}"
                         placeholder="名前やメールアドレスを入力してください"
                     >
+                    <select name="search_type" class="admin-search-select">
+                        <option value="partial" {{ request('search_type', 'partial') == 'partial' ? 'selected' : '' }}>部分一致</option>
+                        <option value="exact" {{ request('search_type') == 'exact' ? 'selected' : '' }}>完全一致</option>
+                    </select>
                     <select name="gender" class="admin-search-select">
                         <option value="">性別</option>
                         <option value="1" {{ request('gender') == '1' ? 'selected' : '' }}>男性</option>
@@ -102,9 +122,17 @@
                     </select>
                     <input 
                         type="date" 
-                        name="date" 
+                        name="created_from" 
                         class="admin-search-date"
-                        value="{{ request('date') }}"
+                        value="{{ request('created_from') }}"
+                        placeholder="開始日"
+                    >
+                    <input 
+                        type="date" 
+                        name="created_to" 
+                        class="admin-search-date"
+                        value="{{ request('created_to') }}"
+                        placeholder="終了日"
                     >
                     <button type="submit" class="admin-search-button">検索</button>
                     <a href="{{ route('admin.reset') }}" class="admin-reset-button">リセット</a>
@@ -118,14 +146,20 @@
                 @if(request('keyword'))
                     <input type="hidden" name="keyword" value="{{ request('keyword') }}">
                 @endif
+                @if(request('search_type'))
+                    <input type="hidden" name="search_type" value="{{ request('search_type') }}">
+                @endif
                 @if(request('gender'))
                     <input type="hidden" name="gender" value="{{ request('gender') }}">
                 @endif
                 @if(request('category_id'))
                     <input type="hidden" name="category_id" value="{{ request('category_id') }}">
                 @endif
-                @if(request('date'))
-                    <input type="hidden" name="date" value="{{ request('date') }}">
+                @if(request('created_from'))
+                    <input type="hidden" name="created_from" value="{{ request('created_from') }}">
+                @endif
+                @if(request('created_to'))
+                    <input type="hidden" name="created_to" value="{{ request('created_to') }}">
                 @endif
                 <button type="submit" class="admin-export-button">エクスポート</button>
             </form>

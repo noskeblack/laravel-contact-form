@@ -30,7 +30,7 @@ class AdminController extends Controller
         // お問い合わせデータを取得（ページネーション対応、カテゴリも一緒に取得）
         $contacts = Contact::with('category')
             ->orderBy('created_at', 'desc')
-            ->paginate(10);
+            ->paginate(7);
         
         return view('admin.index', compact('categories', 'contacts'));
     }
@@ -51,14 +51,34 @@ class AdminController extends Controller
         $categories = Category::all();
         
         // 検索条件を取得
+        $keyword = $request->input('keyword');
         $gender = $request->input('gender');
         $categoryId = $request->input('category_id');
         $createdFrom = $request->input('created_from');
         $createdTo = $request->input('created_to');
-        $email = $request->input('email');
+        $searchType = $request->input('search_type', 'partial'); // デフォルトは部分一致
         
         // 検索条件に基づいてお問い合わせデータを取得（ページネーション対応）
         $query = Contact::with('category');
+        
+        // 名前・メールアドレスでフィルタ
+        if (!empty($keyword)) {
+            if ($searchType === 'exact') {
+                // 完全一致
+                $query->where(function($q) use ($keyword) {
+                    $q->where('last_name', $keyword)
+                      ->orWhere('first_name', $keyword)
+                      ->orWhere('email', $keyword);
+                });
+            } else {
+                // 部分一致（デフォルト）
+                $query->where(function($q) use ($keyword) {
+                    $q->where('last_name', 'like', '%' . $keyword . '%')
+                      ->orWhere('first_name', 'like', '%' . $keyword . '%')
+                      ->orWhere('email', 'like', '%' . $keyword . '%');
+                });
+            }
+        }
         
         // 性別でフィルタ
         if (!empty($gender)) {
@@ -80,13 +100,8 @@ class AdminController extends Controller
             $query->whereDate('created_at', '<=', $createdTo);
         }
         
-        // メールアドレスでフィルタ（部分一致）
-        if (!empty($email)) {
-            $query->where('email', 'like', '%' . $email . '%');
-        }
-        
         // 作成日時の降順でソート
-        $contacts = $query->orderBy('created_at', 'desc')->paginate(10);
+        $contacts = $query->orderBy('created_at', 'desc')->paginate(7);
         
         return view('admin.search', compact('categories', 'contacts'));
     }
@@ -193,12 +208,122 @@ class AdminController extends Controller
      */
     public function export(Request $request)
     {
-        // TODO: 検索条件を取得
-        // TODO: 検索条件に基づいてお問い合わせデータを取得
-        // TODO: CSVファイルを生成してダウンロード
+        // 検索条件を取得（search()メソッドと同じロジック）
+        $keyword = $request->input('keyword');
+        $gender = $request->input('gender');
+        $categoryId = $request->input('category_id');
+        $createdFrom = $request->input('created_from');
+        $createdTo = $request->input('created_to');
+        $searchType = $request->input('search_type', 'partial');
         
-        // 一旦、リダイレクト（後でCSVダウンロード処理に変更）
-        return redirect()->route('admin.index');
+        // 検索条件に基づいてお問い合わせデータを取得
+        $query = Contact::with('category');
+        
+        // 名前・メールアドレスでフィルタ
+        if (!empty($keyword)) {
+            if ($searchType === 'exact') {
+                // 完全一致
+                $query->where(function($q) use ($keyword) {
+                    $q->where('last_name', $keyword)
+                      ->orWhere('first_name', $keyword)
+                      ->orWhere('email', $keyword);
+                });
+            } else {
+                // 部分一致（デフォルト）
+                $query->where(function($q) use ($keyword) {
+                    $q->where('last_name', 'like', '%' . $keyword . '%')
+                      ->orWhere('first_name', 'like', '%' . $keyword . '%')
+                      ->orWhere('email', 'like', '%' . $keyword . '%');
+                });
+            }
+        }
+        
+        // 性別でフィルタ
+        if (!empty($gender)) {
+            $query->where('gender', $gender);
+        }
+        
+        // お問い合わせの種類でフィルタ
+        if (!empty($categoryId)) {
+            $query->where('category_id', $categoryId);
+        }
+        
+        // 作成日（開始）でフィルタ
+        if (!empty($createdFrom)) {
+            $query->whereDate('created_at', '>=', $createdFrom);
+        }
+        
+        // 作成日（終了）でフィルタ
+        if (!empty($createdTo)) {
+            $query->whereDate('created_at', '<=', $createdTo);
+        }
+        
+        // 作成日時の降順でソート
+        $contacts = $query->orderBy('created_at', 'desc')->get();
+        
+        // CSVファイルを生成してダウンロード
+        $filename = 'contacts_' . date('YmdHis') . '.csv';
+        
+        $headers = [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
+        ];
+        
+        $callback = function() use ($contacts) {
+            $file = fopen('php://output', 'w');
+            
+            // BOMを追加（Excelで文字化けしないように）
+            fprintf($file, chr(0xEF).chr(0xBB).chr(0xBF));
+            
+            // ヘッダー行
+            fputcsv($file, [
+                'ID',
+                'お名前（姓）',
+                'お名前（名）',
+                '性別',
+                'メールアドレス',
+                '電話番号',
+                '住所',
+                '建物名',
+                'お問い合わせの種類',
+                'お問い合わせ内容',
+                '作成日時',
+            ]);
+            
+            // データ行
+            foreach ($contacts as $contact) {
+                // 性別の表示用テキスト
+                $genderText = '';
+                if ($contact->gender == 1) {
+                    $genderText = '男性';
+                } elseif ($contact->gender == 2) {
+                    $genderText = '女性';
+                } elseif ($contact->gender == 3) {
+                    $genderText = 'その他';
+                }
+                
+                // 電話番号（ハイフンなし）
+                $tel = $contact->tel_part1 . $contact->tel_part2 . $contact->tel_part3;
+                
+                fputcsv($file, [
+                    $contact->id,
+                    $contact->last_name,
+                    $contact->first_name,
+                    $genderText,
+                    $contact->email,
+                    $tel,
+                    $contact->address,
+                    $contact->building ?? '',
+                    $contact->category->content ?? '',
+                    $contact->detail,
+                    $contact->created_at->format('Y-m-d H:i:s'),
+                ]);
+            }
+            
+            fclose($file);
+        };
+        
+        return response()->stream($callback, 200, $headers);
     }
 }
 

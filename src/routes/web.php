@@ -29,6 +29,9 @@ Route::post('/store', [ContactController::class, 'store'])->name('contact.store'
 // お問い合わせフォーム確認ページ（GET: 確認画面を表示）
 Route::get('/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
 
+// お問い合わせフォーム修正処理（GET: 確認画面から修正ボタンで入力画面に戻る）
+Route::get('/edit', [ContactController::class, 'edit'])->name('contact.edit');
+
 // お問い合わせフォーム送信処理（POST: 確認画面からの送信）
 Route::post('/confirm', [ContactController::class, 'send'])->name('contact.send');
 

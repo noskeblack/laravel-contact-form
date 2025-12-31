@@ -135,7 +135,7 @@ textarea::placeholder {
 /* ラジオボタングループ：横並び配置、適切な間隔 */
 .radio-group {
     display: flex;
-    gap: 20px;
+    gap: 24px;
     align-items: center;
     flex-wrap: wrap;
 }
@@ -144,15 +144,57 @@ textarea::placeholder {
 .radio-item {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
+    position: relative;
 }
 
-/* ラジオボタン本体：適切なサイズ、カーソルをポインターに */
+/* ラジオボタン本体：適切なサイズ、カーソルをポインターに、カスタムスタイル */
 .radio-item input[type="radio"] {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     cursor: pointer;
     flex-shrink: 0;
+    margin: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+/* ラジオボタンのホバー効果 */
+.radio-item input[type="radio"]:hover {
+    border-color: #8b6f47;
+    background-color: #f9f9f9;
+}
+
+/* ラジオボタンのフォーカス効果 */
+.radio-item input[type="radio"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(139, 111, 71, 0.1);
+    border-color: #8b6f47;
+}
+
+/* ラジオボタンの選択状態 */
+.radio-item input[type="radio"]:checked {
+    border-color: #8b6f47;
+    background-color: #fff;
+}
+
+/* ラジオボタンの選択時の内部円 */
+.radio-item input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #8b6f47;
 }
 
 /* ラジオボタンのラベル：クリック可能、適切なサイズ */
@@ -161,6 +203,13 @@ textarea::placeholder {
     color: #333;
     cursor: pointer;
     user-select: none;
+    line-height: 1.5;
+    transition: color 0.2s ease;
+}
+
+/* ラジオボタンのラベルのホバー効果 */
+.radio-item:hover label {
+    color: #8b6f47;
 }
 
 /* ========================================

@@ -118,7 +118,7 @@
 
             <!-- ボタン -->
             <div class="confirm-buttons">
-                <button type="submit" formaction="{{ route('contact.index') }}" formmethod="GET" class="btn-back">修正</button>
+                <a href="{{ route('contact.edit') }}" class="btn-back">修正</a>
                 <button type="submit" class="btn-submit">送信</button>
             </div>
         </form>

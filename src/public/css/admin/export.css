@@ -11,38 +11,43 @@
 /* エクスポートセクション */
 .admin-export-section {
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 /* エクスポートフォーム */
 .admin-export-form {
     margin: 0;
+    display: inline-block;
 }
 
 /* ========================================
    エクスポートボタン
    ======================================== */
 
-/* エクスポートボタン：青系の目立つ色で配置 */
+/* エクスポートボタン：リセットボタンと同じスタイル */
 .admin-export-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 30px;
-    font-size: 14px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.1s ease;
-    font-family: inherit;
-    font-weight: 500;
+    background-color: #fff !important;
+    color: #8b6f47 !important;
+    border: 2px solid #8b6f47 !important;
+    padding: 10px 30px !important;
+    font-size: 14px !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease, color 0.3s ease !important;
+    font-family: inherit !important;
+    font-weight: 500 !important;
+    display: inline-block !important;
+    text-align: center !important;
 }
 
 .admin-export-button:hover {
-    background-color: #0056b3;
+    background-color: #8b6f47 !important;
+    color: #fff !important;
 }
 
 .admin-export-button:active {
-    background-color: #004085;
-    transform: translateY(1px);
+    background-color: #6b5435 !important;
+    border-color: #6b5435 !important;
 }
 
 /* ========================================
@@ -63,7 +68,8 @@
 
 /* フォーカス可能要素のフォーカス表示を改善（キーボード操作時） */
 .admin-export-button:focus-visible {
-    outline: 2px solid #007bff;
-    outline-offset: 2px;
+    outline: 2px solid #8b6f47 !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 2px rgba(139, 111, 71, 0.2) !important;
 }
 

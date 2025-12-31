@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 // UserRegisterRequest を適用
 use App\Http\Requests\UserRegisterRequest;
 // UserLoginRequest を適用
@@ -48,13 +50,20 @@ class AuthController extends Controller
      */
     public function register(UserRegisterRequest $request)
     {
-        // ContactFormRequest によりバリデーション済みデータを取得
+        // UserRegisterRequest によりバリデーション済みデータを取得
         $validated = $request->validated();
         
-        // TODO: ユーザー登録処理を追加
-        // TODO: ログイン処理を追加
+        // ユーザー登録処理（パスワードはハッシュ化）
+        $user = User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+        ]);
         
-        return redirect()->route('auth.login');
+        // ログイン処理
+        Auth::login($user);
+        
+        return redirect()->route('admin.index');
     }
 
     /**
@@ -92,9 +101,23 @@ class AuthController extends Controller
         // UserLoginRequest によりバリデーション済みデータを取得
         $validated = $request->validated();
         
-        // TODO: ログイン認証処理を追加
+        // ログイン認証処理
+        $credentials = [
+            'email' => $validated['email'],
+            'password' => $validated['password'],
+        ];
         
-        return redirect()->route('admin.index');
+        $remember = $request->filled('remember');
+        
+        if (Auth::attempt($credentials, $remember)) {
+            $request->session()->regenerate();
+            return redirect()->route('admin.index');
+        }
+        
+        // 認証失敗時はバリデーションエラーとして返す
+        return back()->withErrors([
+            'email' => 'メールアドレスまたはパスワードが正しくありません。',
+        ])->withInput($request->only('email'));
     }
 
     /**
@@ -109,10 +132,10 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
-        // TODO: ログアウト処理を実装
-        // Auth::logout();
-        // $request->session()->invalidate();
-        // $request->session()->regenerateToken();
+        // ログアウト処理
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         
         return redirect()->route('auth.login');
     }

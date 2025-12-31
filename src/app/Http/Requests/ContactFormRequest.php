@@ -44,10 +44,10 @@ class ContactFormRequest extends FormRequest
             // メールアドレス: 必須、メール形式
             'email' => ['required', 'email'],
             
-            // 電話番号（3分割入力）: 必須、数値、各項目最大5桁
-            'tel_part1' => ['required', 'numeric', 'max:5'],
-            'tel_part2' => ['required', 'numeric', 'max:5'],
-            'tel_part3' => ['required', 'numeric', 'max:5'],
+            // 電話番号（3分割入力）: 必須、半角英数字、各項目最大5桁
+            'tel_part1' => ['required', 'regex:/^[0-9a-zA-Z]+$/', 'max:5'],
+            'tel_part2' => ['required', 'regex:/^[0-9a-zA-Z]+$/', 'max:5'],
+            'tel_part3' => ['required', 'regex:/^[0-9a-zA-Z]+$/', 'max:5'],
             
             // 住所: 必須
             'address' => ['required'],
@@ -83,38 +83,38 @@ class ContactFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'last_name.required' => '姓は必須です',
+            'last_name.required' => '姓を入力してください',
             'last_name.string' => '姓は文字列で入力してください',
             'last_name.max' => '姓は最大8文字まで入力可能です',
             
-            'first_name.required' => '名は必須です',
+            'first_name.required' => '名を入力してください',
             'first_name.string' => '名は文字列で入力してください',
             'first_name.max' => '名は最大8文字まで入力可能です',
             
-            'gender.required' => '性別は必須です',
+            'gender.required' => '性別を選択してください',
             
-            'email.required' => 'メールアドレスは必須です',
-            'email.email' => 'メールアドレスの形式が正しくありません',
+            'email.required' => 'メールアドレスを入力してください',
+            'email.email' => 'メールアドレスはメール形式で入力してください',
             
-            'tel_part1.required' => '電話番号（1つ目）は必須です',
-            'tel_part1.numeric' => '電話番号（1つ目）は数値で入力してください',
-            'tel_part1.max' => '電話番号（1つ目）は最大5桁まで入力可能です',
+            'tel_part1.required' => '電話番号を入力してください',
+            'tel_part1.regex' => '電話番号は半角英数字で入力してください',
+            'tel_part1.max' => '電話番号は5桁まで数字で入力してください',
             
-            'tel_part2.required' => '電話番号（2つ目）は必須です',
-            'tel_part2.numeric' => '電話番号（2つ目）は数値で入力してください',
-            'tel_part2.max' => '電話番号（2つ目）は最大5桁まで入力可能です',
+            'tel_part2.required' => '電話番号を入力してください',
+            'tel_part2.regex' => '電話番号は半角英数字で入力してください',
+            'tel_part2.max' => '電話番号は5桁まで数字で入力してください',
             
-            'tel_part3.required' => '電話番号（3つ目）は必須です',
-            'tel_part3.numeric' => '電話番号（3つ目）は数値で入力してください',
-            'tel_part3.max' => '電話番号（3つ目）は最大5桁まで入力可能です',
+            'tel_part3.required' => '電話番号を入力してください',
+            'tel_part3.regex' => '電話番号は半角英数字で入力してください',
+            'tel_part3.max' => '電話番号は5桁まで数字で入力してください',
             
-            'address.required' => '住所は必須です',
+            'address.required' => '住所を入力してください',
             
-            'category_id.required' => 'お問い合わせの種類は必須です',
+            'category_id.required' => 'お問い合わせの種類を選択してください',
             'category_id.exists' => '選択されたお問い合わせの種類は無効です',
             
-            'detail.required' => 'お問い合わせ内容は必須です',
-            'detail.max' => 'お問い合わせ内容は最大120文字まで入力可能です',
+            'detail.required' => 'お問い合わせ内容を入力してください',
+            'detail.max' => 'お問い合わせ内容は120文字以内で入力してください',
         ];
     }
 }

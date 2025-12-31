@@ -88,6 +88,24 @@ class ContactController extends Controller
     }
 
     /**
+     * お問い合わせフォーム修正処理（確認画面から入力画面に戻る）
+     * 
+     * URL: /edit
+     * ルート名: contact.edit
+     * HTTPメソッド: GET
+     * 
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function edit()
+    {
+        // セッションからデータを取得
+        $contactData = session('contact_data', []);
+        
+        // セッションデータをold()に設定して入力画面にリダイレクト
+        return redirect()->route('contact.index')->withInput($contactData);
+    }
+
+    /**
      * お問い合わせフォーム送信処理
      * 
      * URL: /confirm
