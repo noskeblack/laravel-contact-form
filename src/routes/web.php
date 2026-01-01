@@ -64,20 +64,22 @@ Route::get('/thanks', [ContactController::class, 'thanks'])->name('contact.thank
    管理画面関連ルート
    ======================================== */
 
-// 管理画面一覧
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+Route::middleware('auth')->group(function () {
+    // 管理画面一覧
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
-// 管理画面検索結果
-Route::get('/search', [AdminController::class, 'search'])->name('admin.search');
+    // 管理画面検索結果
+    Route::get('/search', [AdminController::class, 'search'])->name('admin.search');
 
-// 管理画面検索条件リセット
-Route::get('/reset', [AdminController::class, 'reset'])->name('admin.reset');
+    // 管理画面検索条件リセット
+    Route::get('/reset', [AdminController::class, 'reset'])->name('admin.reset');
 
-// お問い合わせ詳細データ取得（JSON形式）
-Route::get('/admin/{id}', [AdminController::class, 'show'])->name('admin.show');
+    // お問い合わせ詳細データ取得（JSON形式）
+    Route::get('/admin/{id}', [AdminController::class, 'show'])->name('admin.show');
 
-// お問い合わせデータ削除
-Route::post('/delete', [AdminController::class, 'delete'])->name('admin.delete');
+    // お問い合わせデータ削除
+    Route::post('/delete', [AdminController::class, 'delete'])->name('admin.delete');
 
-// CSVエクスポート
-Route::get('/export', [AdminController::class, 'export'])->name('admin.export');
+    // CSVエクスポート
+    Route::get('/export', [AdminController::class, 'export'])->name('admin.export');
+});
