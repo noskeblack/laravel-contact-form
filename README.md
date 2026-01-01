@@ -45,6 +45,8 @@ php artisan db:seed
 - ユーザー登録: `/register`
 - ログイン: `/login`
 - ログアウト: `/logout` (POST)
+  - `AuthController::logout` メソッドで処理
+  - ログアウト後は `/login` にリダイレクト
 
 ### 管理画面
 

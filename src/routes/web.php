@@ -57,8 +57,8 @@ Route::get('/thanks', [ContactController::class, 'thanks'])->name('contact.thank
 // // FormRequest: UserLoginRequest 適用（コントローラ側で処理）
 // Route::post('/login', [AuthController::class, 'login'])->name('auth.login.post');
 
-// // ログアウト処理
-// Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+// ログアウト処理
+Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 /* ========================================
    管理画面関連ルート
